@@ -5,12 +5,13 @@
     <channels>
       <channel url="https://people.onliner.by/feed" />
       <channel url="https://tech.onliner.by/feed" />
-      <channel url="https://auto.onliner.by/feed" />
+      <channel url="https://lenta.ru/rss/news" />
+      <channel url="http://news.rambler.ru/rss/world/" />
+      <channel url="http://auto.onliner.by/feed" />
     </channels>
     <filters>
       <include method="and">
         <item>IT</item>
-        <item>BSUIR</item>
       </include>
     </filters>
   </user>

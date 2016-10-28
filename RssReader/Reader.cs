@@ -36,9 +36,10 @@ namespace RssReader
                 newsTable.Rows.Clear();
             }));
             Setting set = (Setting)param;
-            foreach (string url in set.channels)
+            foreach (Channel channel in set.channels)
             {
-                tp.Execute(new Task(parse, url));
+                if(channel.IsSelected)
+                    tp.Execute(new Task(parse, channel.Url));
             }
         }
 
@@ -187,13 +188,14 @@ namespace RssReader
         private void resetChannel(object sender, EventArgs e)
         {
             newsTable.Rows.Clear();
-            currentSetting.channels.Clear();
+            int i = 0;
             foreach (ListViewItem item in channelList.Items)
             {
-                if (item.Checked == true)
+                if (item.Checked != true)
                 {
-                    setting.channels.Add(item.Text);
+                    setting.channels[i].IsSelected = false;
                 }
+                i++;
             }
             thr = new Thread(new ParameterizedThreadStart(initialTP)) { IsBackground = true };
             thr.Start(setting);
@@ -219,10 +221,10 @@ namespace RssReader
                         label1.Text = "Current User: " + setting.GetUserName;
                         channelList.Items.Clear();
                         ListViewItem lvi;
-                        foreach (string str in setting.channels)
+                        foreach (Channel channel in setting.channels)
                         {
                             lvi = new ListViewItem();
-                            lvi.Text = str;
+                            lvi.Text = channel.Url;
                             lvi.Checked = true;
                             channelList.Items.Add(lvi);
                         }
@@ -256,9 +258,9 @@ namespace RssReader
                 label1.Text = "Current User: " + setting.GetUserName;
                 int i = 0;
                 channelList.Items.Clear();
-                foreach (string str in setting.channels)
+                foreach (Channel channel in setting.channels)
                 {
-                    channelList.Items.Add(str);
+                    channelList.Items.Add(channel.Url);
                     channelList.Items[i].Checked = true;
                     i++;
                 }
@@ -288,7 +290,7 @@ namespace RssReader
             }
             else
             {
-                MessageBox.Show("Пользователь не был выбран!");
+                MessageBox.Show("User was not selected!");
             }
         }
     }

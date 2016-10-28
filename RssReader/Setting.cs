@@ -11,7 +11,7 @@ namespace RssReader
 {
     public class Setting
     {
-        public List<string> channels = new List<string>();
+        public List<Channel> channels = new List<Channel>();
         public List<string> includeFilters = new List<string>();
         public List<string> excludeFilters = new List<string>();
         public string includeMethod = "";
@@ -57,7 +57,7 @@ namespace RssReader
                                     {
                                         foreach(XmlNode temp in node.ChildNodes)
                                         {
-                                            channels.Add(temp.Attributes[0].Value);
+                                            channels.Add(new Channel(temp.Attributes[0].Value));
                                         }
                                         break;
                                     }

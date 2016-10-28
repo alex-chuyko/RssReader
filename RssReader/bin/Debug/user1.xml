@@ -1,22 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-	<user name="Alex">
-		<thread count="3" />
-		<channels>
-			<channel url="https://people.onliner.by/feed" />
-			<channel url="https://auto.onliner.by/feed" />
-			<channel url="https://lenta.ru/rss/news" />
-			<channel url="http://news.rambler.ru/rss/world/" />
-			<channel url="https://russian.rt.com/rss" />
-			<channel url="http://www.eg.ru/rss.xml" />
-		</channels>
-		<filters>
-			<include method="or">
-				<item>Социум</item>
-				<item>Мир</item>
-			</include>
-			<exclude method="and">
-				<item>Беларус</item>
-			</exclude>
-		</filters>
-	</user>
+  <user name="Alex">
+    <thread count="4" />
+    <channels>
+      <channel url="https://people.onliner.by/feed" />
+      <channel url="https://auto.onliner.by/feed" />
+      <channel url="https://lenta.ru/rss/news" />
+      <channel url="http://news.rambler.ru/rss/world/" />
+      <channel url="https://russian.rt.com/rss" />
+      <channel url="http://www.eg.ru/rss.xml" />
+    </channels>
+    <filters>
+      <include method="or">
+        <item>Социум</item>
+        <item>Мир</item>
+      </include>
+      <exclude method="and">
+        <item>Беларус</item>
+        <item>пример</item>
+      </exclude>
+    </filters>
+  </user>
 </root>

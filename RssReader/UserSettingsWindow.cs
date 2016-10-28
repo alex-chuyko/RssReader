@@ -32,9 +32,9 @@ namespace RssReader
             tbThreadCount.Text = current.GetThreadCount.ToString();
             tbExMethod.Text = current.excludeMethod;
             tbInMethod.Text = current.includeMethod;
-            foreach (string channel in current.channels)
+            foreach (Channel channel in current.channels)
             {
-                listChannels.Items.Add(channel);
+                listChannels.Items.Add(channel.Url);
             }
             foreach (string inFilters in current.includeFilters)
             {
@@ -59,7 +59,7 @@ namespace RssReader
                 setting.excludeFilters.Clear();
                 foreach(ListViewItem channel in listChannels.Items)
                 {
-                    setting.channels.Add(channel.Text);
+                    setting.channels.Add(new Channel(channel.Text));
                 }
                 foreach (ListViewItem inFilter in listInFilters.Items)
                 {
@@ -94,10 +94,10 @@ namespace RssReader
             thread.Add(threadCount);
             user.Add(thread);
             XElement channels = new XElement("channels");
-            foreach(string channel in set.channels)
+            foreach(Channel channel in set.channels)
             {
                 XElement chl = new XElement("channel");
-                XAttribute url = new XAttribute("url", channel);
+                XAttribute url = new XAttribute("url", channel.Url);
                 chl.Add(url);
                 channels.Add(chl);
             }
@@ -115,7 +115,7 @@ namespace RssReader
             if (set.includeFilters.Count != 0)
                 filters.Add(include);
             include = new XElement("exclude");
-            method = new XAttribute("method", set.excludeFilters);
+            method = new XAttribute("method", set.excludeMethod);
             include.Add(method);
             foreach (string exFilter in set.excludeFilters)
             {
@@ -183,7 +183,7 @@ namespace RssReader
                 addInListForm.Close();
             }
             else
-                MessageBox.Show("Вы не ввели значение!");
+                MessageBox.Show("You have not entered a value!");
         }
 
         private void listViewMouseDown(object sender, MouseEventArgs e)
