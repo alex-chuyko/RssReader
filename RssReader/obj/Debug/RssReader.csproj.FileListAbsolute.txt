@@ -1,0 +1,10 @@
+C:\Users\Александр\Documents\Visual Studio 2015\Projects\SPP\Lab4\RssReader\RssReader\bin\Debug\RssReader.exe.config
+C:\Users\Александр\Documents\Visual Studio 2015\Projects\SPP\Lab4\RssReader\RssReader\obj\Debug\RssReader.csprojResolveAssemblyReference.cache
+C:\Users\Александр\Documents\Visual Studio 2015\Projects\SPP\Lab4\RssReader\RssReader\obj\Debug\RssReader.Properties.Resources.resources
+C:\Users\Александр\Documents\Visual Studio 2015\Projects\SPP\Lab4\RssReader\RssReader\obj\Debug\RssReader.csproj.GenerateResource.Cache
+C:\Users\Александр\Documents\Visual Studio 2015\Projects\SPP\Lab4\RssReader\RssReader\bin\Debug\RssReader.exe
+C:\Users\Александр\Documents\Visual Studio 2015\Projects\SPP\Lab4\RssReader\RssReader\bin\Debug\RssReader.pdb
+C:\Users\Александр\Documents\Visual Studio 2015\Projects\SPP\Lab4\RssReader\RssReader\obj\Debug\RssReader.exe
+C:\Users\Александр\Documents\Visual Studio 2015\Projects\SPP\Lab4\RssReader\RssReader\obj\Debug\RssReader.pdb
+C:\Users\Александр\Documents\Visual Studio 2015\Projects\SPP\Lab4\RssReader\RssReader\obj\Debug\RssReader.Reader.resources
+C:\Users\Александр\Documents\Visual Studio 2015\Projects\SPP\Lab4\RssReader\RssReader\obj\Debug\RssReader.UserSettingsWindow.resources
