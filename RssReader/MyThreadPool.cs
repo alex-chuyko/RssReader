@@ -12,8 +12,8 @@ namespace RssReader
     {
         private List<Task> _tasks = new List<Task>();
         private List<Thread> _workers;
+        private int count = 0;
         private int threadCount;
-        private object objLock = new object();
         private bool _disallowAdd; 
         private bool _disposed;
 
@@ -63,22 +63,16 @@ namespace RssReader
                     this._workers.Add(Thread.CurrentThread);
                 }
                 task = null;
+                count--;
             }
         }
 
-        private void SelectFreeThread()
+        public bool isEmpty()
         {
-            lock (objLock)
-            {
-                foreach (Thread th in _workers)
-                {
-                    if (th.IsAlive == false)
-                    {
-                        th.Start();
-                        break;
-                    }
-                }
-            }
+            if (this.count == 0)
+                return true;
+            else
+                return false;
         }
 
         public void Dispose()
@@ -114,6 +108,7 @@ namespace RssReader
             lock (this._tasks)
             {
                 this._tasks.Add(task);
+                count++;
                 Monitor.PulseAll(this._tasks); 
                 return true;
             }

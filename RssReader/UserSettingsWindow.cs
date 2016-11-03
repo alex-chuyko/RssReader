@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -30,8 +31,10 @@ namespace RssReader
             setting = current;
             tbUserName.Text = current.GetUserName;
             tbThreadCount.Text = current.GetThreadCount.ToString();
-            tbExMethod.Text = current.excludeMethod;
-            tbInMethod.Text = current.includeMethod;
+            excludeFiltersBox.Text = current.excludeMethod;
+            includeFiltersBox.Text = current.includeMethod;
+            /*tbExMethod.Text = current.excludeMethod;
+            tbInMethod.Text = current.includeMethod;*/
             foreach (Channel channel in current.channels)
             {
                 listChannels.Items.Add(channel.Url);
@@ -52,8 +55,10 @@ namespace RssReader
             {
                 setting.SetUserName = tbUserName.Text;
                 setting.SetThreadCount = Int32.Parse(tbThreadCount.Text);
-                setting.excludeMethod = tbExMethod.Text;
-                setting.includeMethod = tbInMethod.Text;
+                if(excludeFiltersBox.SelectedItem != null)
+                    setting.excludeMethod = excludeFiltersBox.SelectedItem.ToString();
+                if(includeFiltersBox.SelectedItem != null)
+                    setting.includeMethod = includeFiltersBox.SelectedItem.ToString();
                 setting.channels.Clear();
                 setting.includeFilters.Clear();
                 setting.excludeFilters.Clear();
@@ -178,12 +183,36 @@ namespace RssReader
         {
             if (textBox.Text != "")
             {
-                currentListView.Items.Add(textBox.Text);
-                textBox.Clear();
-                addInListForm.Close();
+                if (!currentListView.Equals(listChannels) || CheckURL(textBox.Text))
+                {
+                    currentListView.Items.Add(textBox.Text);
+                    textBox.Clear();
+                    addInListForm.Close();
+                }
             }
             else
                 MessageBox.Show("You have not entered a value!");
+        }
+
+        private bool CheckURL(String url)
+        {
+            if (String.IsNullOrEmpty(url))
+                return false;
+
+            try
+            {
+                WebRequest request = WebRequest.Create(url);
+
+                HttpWebResponse res = request.GetResponse() as HttpWebResponse;
+
+                if (res.StatusDescription == "OK")
+                    return true;
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            return false;
         }
 
         private void listViewMouseDown(object sender, MouseEventArgs e)
@@ -192,6 +221,21 @@ namespace RssReader
             {
                 currentListView = (ListView)sender;
             }
+        }
+
+        private void button1_MouseClick(object sender, MouseEventArgs e)
+        {
+            currentListView = listChannels;
+        }
+
+        private void button2_MouseDown(object sender, MouseEventArgs e)
+        {
+            currentListView = listInFilters;
+        }
+
+        private void button3_MouseDown(object sender, MouseEventArgs e)
+        {
+            currentListView = listExFilters;
         }
     }
 }

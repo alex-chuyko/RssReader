@@ -28,6 +28,21 @@ namespace RssReader
         public Setting currentSetting;
         private static string pattern = "\\<.*?\\>";
         private Regex regex = new Regex(pattern);
+        Thread checkThread;
+
+        private void checkButton()
+        {
+            while(true)
+            {
+                if (tp != null)
+                {
+                    if (tp.isEmpty())
+                        resetChanelButton.Invoke(new Action(() => resetChanelButton.Enabled = true));
+                    else
+                        resetChanelButton.Invoke(new Action(() => resetChanelButton.Enabled = false));
+                }
+            }
+        }
 
         private void initialTP(object param)
         {
@@ -92,7 +107,7 @@ namespace RssReader
                 else
                     return false;
             }
-            return true;
+            return false;
         }
 
         private bool checkString(string str)
@@ -114,7 +129,7 @@ namespace RssReader
             string category = item.SelectSingleNode("category") != null ? item.SelectSingleNode("category").InnerText.ToUpper() : "";
 
             if ((currentSetting.includeFilters.Count == 0 || checkIncludeFilters(title) || checkIncludeFilters(description) || checkIncludeFilters(category)) &&
-                (currentSetting.excludeFilters.Count == 0 || !checkExcludeFilters(title) || !checkExcludeFilters(description) || !checkExcludeFilters(category)))
+                (currentSetting.excludeFilters.Count == 0 || (!checkExcludeFilters(title) && !checkExcludeFilters(description) && !checkExcludeFilters(category))))
                 return true;
             else
                 return false;
@@ -227,6 +242,11 @@ namespace RssReader
                             lvi.Text = channel.Url;
                             lvi.Checked = true;
                             channelList.Items.Add(lvi);
+                        }
+                        if(tp == null)
+                        {
+                            checkThread = new Thread(checkButton) { IsBackground = true };
+                            checkThread.Start();
                         }
                         tp = new MyThreadPool(setting.GetThreadCount);
                         thr = new Thread(new ParameterizedThreadStart(initialTP)) { IsBackground = true };

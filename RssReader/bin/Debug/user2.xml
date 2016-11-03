@@ -1,18 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <user name="Lina">
-    <thread count="7" />
+    <thread count="1" />
     <channels>
       <channel url="https://people.onliner.by/feed" />
       <channel url="https://tech.onliner.by/feed" />
       <channel url="https://lenta.ru/rss/news" />
       <channel url="http://news.rambler.ru/rss/world/" />
       <channel url="http://auto.onliner.by/feed" />
+      <channel url="http://fksis.bsuir.by/rss/news" />
     </channels>
     <filters>
-      <include method="and">
+      <include method="or">
         <item>IT</item>
       </include>
+      <exclude method="and">
+        <item>2016</item>
+        <item>БГУИР</item>
+      </exclude>
     </filters>
   </user>
 </root>

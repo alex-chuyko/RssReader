@@ -45,8 +45,11 @@
             this.saveSettingBtn = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.tbInMethod = new System.Windows.Forms.TextBox();
-            this.tbExMethod = new System.Windows.Forms.TextBox();
+            this.includeFiltersBox = new System.Windows.Forms.ComboBox();
+            this.excludeFiltersBox = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -169,7 +172,7 @@
             // 
             // saveSettingBtn
             // 
-            this.saveSettingBtn.Location = new System.Drawing.Point(655, 525);
+            this.saveSettingBtn.Location = new System.Drawing.Point(656, 547);
             this.saveSettingBtn.Name = "saveSettingBtn";
             this.saveSettingBtn.Size = new System.Drawing.Size(75, 23);
             this.saveSettingBtn.TabIndex = 10;
@@ -195,27 +198,71 @@
             this.label7.TabIndex = 12;
             this.label7.Text = "Method exclude filters:";
             // 
-            // tbInMethod
+            // includeFiltersBox
             // 
-            this.tbInMethod.Location = new System.Drawing.Point(389, 6);
-            this.tbInMethod.Name = "tbInMethod";
-            this.tbInMethod.Size = new System.Drawing.Size(100, 20);
-            this.tbInMethod.TabIndex = 13;
+            this.includeFiltersBox.FormattingEnabled = true;
+            this.includeFiltersBox.Items.AddRange(new object[] {
+            "and",
+            "or"});
+            this.includeFiltersBox.Location = new System.Drawing.Point(380, 6);
+            this.includeFiltersBox.Name = "includeFiltersBox";
+            this.includeFiltersBox.Size = new System.Drawing.Size(121, 21);
+            this.includeFiltersBox.TabIndex = 15;
             // 
-            // tbExMethod
+            // excludeFiltersBox
             // 
-            this.tbExMethod.Location = new System.Drawing.Point(389, 41);
-            this.tbExMethod.Name = "tbExMethod";
-            this.tbExMethod.Size = new System.Drawing.Size(100, 20);
-            this.tbExMethod.TabIndex = 14;
+            this.excludeFiltersBox.FormattingEnabled = true;
+            this.excludeFiltersBox.Items.AddRange(new object[] {
+            "and",
+            "or"});
+            this.excludeFiltersBox.Location = new System.Drawing.Point(380, 41);
+            this.excludeFiltersBox.Name = "excludeFiltersBox";
+            this.excludeFiltersBox.Size = new System.Drawing.Size(121, 21);
+            this.excludeFiltersBox.TabIndex = 16;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(71, 505);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 17;
+            this.button1.Text = "Add channel";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
+            this.button1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button1_MouseClick);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(321, 505);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(115, 23);
+            this.button2.TabIndex = 18;
+            this.button2.Text = "Add include filter";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
+            this.button2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button2_MouseDown);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(570, 505);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(113, 23);
+            this.button3.TabIndex = 19;
+            this.button3.Text = "Add exclude filter";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
+            this.button3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button3_MouseDown);
             // 
             // UserSettingsWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(754, 560);
-            this.Controls.Add(this.tbExMethod);
-            this.Controls.Add(this.tbInMethod);
+            this.ClientSize = new System.Drawing.Size(754, 581);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.excludeFiltersBox);
+            this.Controls.Add(this.includeFiltersBox);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.saveSettingBtn);
@@ -254,10 +301,13 @@
         private System.Windows.Forms.Button saveSettingBtn;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox tbInMethod;
-        private System.Windows.Forms.TextBox tbExMethod;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.ComboBox includeFiltersBox;
+        private System.Windows.Forms.ComboBox excludeFiltersBox;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
     }
 }
