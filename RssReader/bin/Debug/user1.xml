@@ -11,14 +11,9 @@
       <channel url="http://www.eg.ru/rss.xml" />
     </channels>
     <filters>
-      <include method="or">
+      <include method="and">
         <item>Социум</item>
-        <item>Мир</item>
       </include>
-      <exclude method="and">
-        <item>Беларус</item>
-        <item>пример</item>
-      </exclude>
     </filters>
   </user>
 </root>

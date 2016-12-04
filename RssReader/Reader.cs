@@ -128,8 +128,8 @@ namespace RssReader
             string description = item.SelectSingleNode("description") != null ? item.SelectSingleNode("description").InnerText.ToUpper() : "";
             string category = item.SelectSingleNode("category") != null ? item.SelectSingleNode("category").InnerText.ToUpper() : "";
 
-            if ((currentSetting.includeFilters.Count == 0 || checkIncludeFilters(title) || checkIncludeFilters(description) || checkIncludeFilters(category)) &&
-                (currentSetting.excludeFilters.Count == 0 || (!checkExcludeFilters(title) && !checkExcludeFilters(description) && !checkExcludeFilters(category))))
+            if ((currentSetting.excludeFilters.Count == 0 || (!checkExcludeFilters(title) && !checkExcludeFilters(description) && !checkExcludeFilters(category))) &&
+                (currentSetting.includeFilters.Count == 0 || checkIncludeFilters(title) || checkIncludeFilters(description) || checkIncludeFilters(category)))
                 return true;
             else
                 return false;
@@ -209,6 +209,10 @@ namespace RssReader
                 if (item.Checked != true)
                 {
                     setting.channels[i].IsSelected = false;
+                }
+                else
+                {
+                    setting.channels[i].IsSelected = true;
                 }
                 i++;
             }
